@@ -2,15 +2,15 @@
   <img src="github-metrics.svg" alt="Metrics" width="100%">
 </p> -->
 
-<h1 align="center">Hi 👋, I'm Hatedatastructures</h1>
-<h3 align="center">C++ Developer & Backend Engineer</h3>
+<h1 align="center">Hi 👋, I'm Frieren</h1>
+<h3 align="center">C++ Mage & Backend Engineer</h3>
 
 <p align="center">
-  <em>Core C++ · Polyglot (C / Go / Python) · System Architecture</em>
+  <em> Core C++ · Polyglot (C / Go / Python) · System Architecture</em>
 </p>
 
 <p align="center">
-  Look up at the starry sky and keep your feet on the ground
+  <em> Currently a pure backend developer </em>
 </p>
 
 ---
