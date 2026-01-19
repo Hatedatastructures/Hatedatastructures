@@ -2,7 +2,7 @@
 name: Metrics
 on:
   # 每小时更新一次 (注意：这会消耗较多 Action 分钟数，如果不频繁提交代码，建议改为每天 "0 0 * * *")
-  schedule: [{cron: "0 0 * * *"}]
+  schedule: [{cron: "0 * * * *"}]
   # 允许手动触发
   workflow_dispatch:
   # 当推送到主分支时触发
