@@ -1,77 +1,43 @@
-# Visit https://github.com/lowlighter/metrics#-documentation for full reference
-name: Metrics
-on:
-  # 每天北京时间 08:00 (UTC 00:00) 运行一次
-  schedule: [{cron: "0 * * * *"}]
-  # 允许手动触发
-  workflow_dispatch:
-  # 当推送到主分支时触发
-  push: {branches: ["master", "main"]}
-jobs:
-  github-metrics:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - uses: lowlighter/metrics@latest
-        with:
-          # ========================================================================
-          # ⚙️ 核心配置 (Core Configuration)
-          # ========================================================================
-          token: ${{ secrets.METRICS_TOKEN }}
-          user: Hatedatastructures
-          template: classic
-          filename: github-metrics.svg
-          base: header, activity, community, repositories, metadata
-          config_timezone: Asia/Shanghai
-          config_twemoji: yes
+# # Visit https://github.com/lowlighter/metrics#-documentation for full reference
+# name: Metrics
+# on:
+#   # 每天北京时间 08:00 (UTC 00:00) 运行一次
+#   schedule: [{cron: "0 * * * *"}]
+#   # 允许手动触发
+#   workflow_dispatch:
+#   # 当推送到主分支时触发
+#   push: {branches: ["master", "main"]}
+# jobs:
+#   github-metrics:
+#     runs-on: ubuntu-latest
+#     permissions:
+#       contents: write
+#     steps:
+#       - uses: lowlighter/metrics@latest
+#         with:
+#           # ========================================================================
+#           # ⚙️ 核心配置 (Core Configuration)
+#           # ========================================================================
+#           token: ${{ secrets.METRICS_TOKEN }}
+#           user: Hatedatastructures
+#           template: classic
+#           filename: github-metrics.svg
+#           base: header, activity, community, repositories, metadata
+#           config_timezone: Asia/Shanghai
+#           config_twemoji: yes
 
-          # ========================================================================
-          # 💻 代码能力与习惯 (Coding Skills & Habits)
-          # ========================================================================
-          # 语言分析：展示你会的技术栈，放在显眼位置
-          plugin_languages: yes
-          plugin_languages_sections: most-used
-          plugin_languages_categories: markup, programming
-          plugin_languages_colors: github
-          plugin_languages_limit: 10
-          plugin_languages_recent_categories: markup, programming
-          plugin_languages_recent_days: 14
-          plugin_languages_recent_load: 300
-          plugin_languages_analysis_timeout: 15
-          plugin_languages_analysis_timeout_repositories: 7.5
-          plugin_languages_threshold: 0%
-
-          # 编码习惯：展示活跃时间段
-          plugin_habits: yes
-          plugin_habits_charts_type: graph
-          plugin_habits_days: 14
-          plugin_habits_facts: yes
-          plugin_habits_from: 200
-          plugin_habits_languages_limit: 8
-          plugin_habits_languages_threshold: 0%
-
-          # 代码行数：硬核数据
-          plugin_lines: yes
-          plugin_lines_history_limit: 1
-          plugin_lines_repositories_limit: 4
-          plugin_lines_sections: base
-
-          # ========================================================================
-          # 📅 活跃概况 (Activity & Calendar)
-          # ========================================================================
-          # 全年日历：视觉冲击力强
-          plugin_isocalendar: yes
-          plugin_isocalendar_duration: full-year
-
-          # 详细日历
-          plugin_calendar: yes
-          plugin_calendar_limit: 1
-
-          # 近期动态
-          plugin_activity: yes
-          plugin_activity_days: 14
-          plugin_activity_filter: all
-          plugin_activity_limit: 5
-          plugin_activity_load: 300
-          plugin_activity_visibility: all
+#           # ========================================================================
+#           # 💻 代码能力与习惯 (Coding Skills & Habits)
+#           # ========================================================================
+#           # 语言分析：展示你会的技术栈，放在显眼位置
+#           plugin_languages: yes
+#           plugin_languages_sections: most-used
+#           plugin_languages_categories: markup, programming
+#           plugin_languages_colors: github
+#           plugin_languages_limit: 10
+#           plugin_languages_recent_categories: markup, programming
+#           plugin_languages_recent_days: 14
+#           plugin_languages_recent_load: 300
+#           plugin_languages_analysis_timeout: 15
+#           plugin_languages_analysis_timeout_repositories: 7.5
+#           plugin_languages_threshold: 0%
