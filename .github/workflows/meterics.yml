@@ -2,7 +2,7 @@
 name: Metrics
 on:
   # 每天北京时间 08:00 (UTC 00:00) 运行一次
-  schedule: [{cron: "0 0 * * *"}]
+  schedule: [{cron: "0 * * * *"}]
   # 允许手动触发
   workflow_dispatch:
   # 当推送到主分支时触发
