@@ -1,8 +1,8 @@
 # Visit https://github.com/lowlighter/metrics#-documentation for full reference
 name: Metrics
 on:
-  # 每小时更新一次 (注意：这会消耗较多 Action 分钟数，如果不频繁提交代码，建议改为每天 "0 0 * * *")
-  schedule: [{cron: "0 * * * *"}]
+  # 每天北京时间 08:00 (UTC 00:00) 运行一次
+  schedule: [{cron: "0 0 * * *"}]
   # 允许手动触发
   workflow_dispatch:
   # 当推送到主分支时触发
@@ -15,49 +15,34 @@ jobs:
     steps:
       - uses: lowlighter/metrics@latest
         with:
-          # 必须在仓库 Secrets 中配置 METRICS_TOKEN
+          # ========================================================================
+          # ⚙️ 核心配置 (Core Configuration)
+          # ========================================================================
           token: ${{ secrets.METRICS_TOKEN }}
-
-          # ========================================================================
-          # 基础配置
-          # ========================================================================
           user: Hatedatastructures
           template: classic
+          filename: github-metrics.svg
           base: header, activity, community, repositories, metadata
           config_timezone: Asia/Shanghai
           config_twemoji: yes
-          # 指定生成的文件名（建议加上，防止找不到文件）
-          filename: github-metrics.svg
 
           # ========================================================================
-          # 🏆 插件: Achievements (成就)
+          # 💻 代码能力与习惯 (Coding Skills & Habits)
           # ========================================================================
-          plugin_achievements: yes
-          plugin_achievements_display: detailed
-          plugin_achievements_secrets: yes
-          plugin_achievements_threshold: C
+          # 语言分析：展示你会的技术栈，放在显眼位置
+          plugin_languages: yes
+          plugin_languages_sections: most-used
+          plugin_languages_categories: markup, programming
+          plugin_languages_colors: github
+          plugin_languages_limit: 8
+          plugin_languages_recent_categories: markup, programming
+          plugin_languages_recent_days: 14
+          plugin_languages_recent_load: 300
+          plugin_languages_analysis_timeout: 15
+          plugin_languages_analysis_timeout_repositories: 7.5
+          plugin_languages_threshold: 0%
 
-          # ========================================================================
-          # 📰 插件: Activity (近期活动)
-          # ========================================================================
-          plugin_activity: yes
-          plugin_activity_days: 14
-          plugin_activity_filter: all
-          plugin_activity_limit: 5
-          plugin_activity_load: 300
-          plugin_activity_visibility: all
-
-          # ========================================================================
-          # 📅 插件: Calendar & Isocalendar (提交日历)
-          # ========================================================================
-          plugin_calendar: yes
-          plugin_calendar_limit: 2
-          plugin_isocalendar: yes
-          plugin_isocalendar_duration: full-year
-
-          # ========================================================================
-          # 💡 插件: Habits (编码习惯)
-          # ========================================================================
+          # 编码习惯：展示活跃时间段
           plugin_habits: yes
           plugin_habits_charts_type: graph
           plugin_habits_days: 14
@@ -66,53 +51,55 @@ jobs:
           plugin_habits_languages_limit: 8
           plugin_habits_languages_threshold: 0%
 
-          # ========================================================================
-          # 🈷️ 插件: Languages (语言分析)
-          # ========================================================================
-          plugin_languages: yes
-          plugin_languages_analysis_timeout: 15
-          plugin_languages_analysis_timeout_repositories: 7.5
-          plugin_languages_categories: markup, programming
-          plugin_languages_colors: github
-          plugin_languages_limit: 8
-          plugin_languages_recent_categories: markup, programming
-          plugin_languages_recent_days: 14
-          plugin_languages_recent_load: 300
-          plugin_languages_sections: most-used
-          plugin_languages_threshold: 0%
-
-          # ========================================================================
-          # 🗳️ 插件: LeetCode (刷题统计)
-          # ========================================================================
-          plugin_leetcode: yes
-          plugin_leetcode_limit_recent: 2
-          plugin_leetcode_limit_skills: 10
-          plugin_leetcode_sections: solved
-          # ⚠️ 注意：这里只需填用户名，不需要 URL
-          plugin_leetcode_user: Hatedatastructures
-
-          # ========================================================================
-          # 👨‍💻 插件: Lines (代码行数)
-          # ========================================================================
+          # 代码行数：硬核数据
           plugin_lines: yes
           plugin_lines_history_limit: 1
           plugin_lines_repositories_limit: 4
           plugin_lines_sections: base
 
           # ========================================================================
-          # 🗂️ 插件: Projects (项目)
+          # 📅 活跃概况 (Activity & Calendar)
           # ========================================================================
-          plugin_projects: yes
-          plugin_projects_limit: 4
+          # 全年日历：视觉冲击力强
+          plugin_isocalendar: yes
+          plugin_isocalendar_duration: full-year
+
+          # 详细日历
+          plugin_calendar: yes
+          plugin_calendar_limit: 2
+
+          # 近期动态
+          plugin_activity: yes
+          plugin_activity_days: 14
+          plugin_activity_filter: all
+          plugin_activity_limit: 5
+          plugin_activity_load: 300
+          plugin_activity_visibility: all
 
           # ========================================================================
-          # 📓 插件: Repositories (仓库展示)
+          # 🗂️ 项目与仓库 (Repositories & Projects)
           # ========================================================================
           plugin_repositories: yes
           plugin_repositories_order: featured, pinned, starred, random
-
-          # ========================================================================
-          # 🌟 插件: Stars (最近 Star 的仓库)
-          # ========================================================================
+          
+          plugin_projects: yes
+          plugin_projects_limit: 4
+          
           plugin_stars: yes
           plugin_stars_limit: 4
+
+          # ========================================================================
+          # 🏆 成就与外部服务 (Achievements & External)
+          # ========================================================================
+          # 成就徽章：增加趣味性
+          plugin_achievements: yes
+          plugin_achievements_display: detailed
+          plugin_achievements_secrets: yes
+          plugin_achievements_threshold: C
+
+          # LeetCode：刷题记录 (注意：仅填用户名)
+          plugin_leetcode: yes
+          plugin_leetcode_user: leetcode.cn/u/hatedatastructures/
+          plugin_leetcode_sections: solved, skills, recent
+          plugin_leetcode_limit_skills: 10
+          plugin_leetcode_limit_recent: 2
