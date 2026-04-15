@@ -17,6 +17,15 @@
 
 ### 🛠️ 兴趣与相关作品
 
+*   🚀 **Prism — 高性能协程代理引擎** (主项目)
+    *   [Prism](https://github.com/Hatedatastructures/Prism.git) : 基于 `C++23` 纯协程架构的服务端代理引擎，PMR 内存池实现热路径零堆分配。
+        *   **架构**：`co_await` 全异步无回调 + Per-worker 独占 `io_context` 无锁设计，吞吐量随 CPU 核心线性扩展。
+        *   **五协议**：HTTP (正向代理 / CONNECT 隧道)、SOCKS5 (RFC 1928 TCP+UDP)、Trojan (TLS + SHA224)、VLESS (UUID 认证)、SS2022 (AEAD + BLAKE3 密钥派生)，支持首包协议自动嗅探 + TLS 透明剥离。
+        *   **伪装层**：Reality TLS 指纹伪装，X25519 密钥交换，可叠加任意内层协议。
+        *   **多路复用**：smux v1 / yamux 流控复用，兼容 Mihomo 内核客户端。
+        *   **网络栈**：Happy Eyeballs (RFC 8305) 多 IP 竞速、七级 DNS 管线 (UDP/TCP/DoT/DoH + 缓存 + 规则)、加权负载均衡 + 过载反压。
+        *   **连接池**：线程级连接复用 + 健康检查 + 自动回收。
+
 *   📦 **自定义库 (手工核心)**
     *   [Custom-libraries](https://github.com/Hatedatastructures/Custom-libraries.git) : 从零构建的高性能基础库集合，以此磨练对底层原理的极致掌控。
         *   🛠️ **容器 (STL 风格)**: **纯手工实现**的标准容器库，接口设计对齐 STL 标准。
@@ -26,13 +35,6 @@
         *   ⚡ **并发模块**: 线程安全的数据结构封装与并发基元。
         *   ⚙️ **调度器**: 支持动态扩缩容的任务调度器与线程池模板。
         *   🕸️ **网络模块**: 基于 `Boost.Asio` 封装的高效会话管理与协议处理组件。
-
-*   🚀 **网络与基础设施**
-    *   [forward-engine](https://github.com/Hatedatastructures/forward-engine.git) : 基于 `C++23` 与 `Boost.Asio` 的高性能协程代理引擎。
-        *   **架构设计**：纯协程驱动 (`net::awaitable`) + PMR 内存管理 + 分层流式架构，热路径零分配。
-        *   **协议支持**：HTTP/HTTPS 正向代理、SOCKS5 (RFC 1928)、Trojan (TLS 伪装)，支持首字节协议自动识别。
-        *   **核心特性**：智能 TCP 连接池（线程隔离、僵尸检测）、轻量级错误码体系、零拷贝双向转发。
-        *   **性能优化**：无锁并发、去虚拟化 (`final`)、连接复用、BoringSSL GREASE 指纹模拟。
 
 *   💻 **算法与练习**
     *   [question](https://github.com/Hatedatastructures/question.git) : 数据结构与算法修炼场。
@@ -45,5 +47,5 @@
 ---
 
 <p align="center">
-  Use <code>C++20/23</code> · Clear Code · High Performance
+  Building <a href="https://github.com/Hatedatastructures/Prism">Prism</a> with <code>C++23</code> · Coroutine-First · Zero Alloc
 </p>
