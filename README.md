@@ -15,34 +15,34 @@
 
 ---
 
-### 🛠️ 兴趣与相关作品
+### 🛠️ 项目
 
-*   🚀 **Prism — 高性能协程代理引擎** (主项目)
-    *   [Prism](https://github.com/Hatedatastructures/Prism.git) : 基于 `C++23` 纯协程架构的服务端代理引擎，PMR 内存池实现热路径零堆分配。
-        *   **架构**：`co_await` 全异步无回调 + Per-worker 独占 `io_context` 无锁设计，吞吐量随 CPU 核心线性扩展。
-        *   **五协议**：HTTP (正向代理 / CONNECT 隧道)、SOCKS5 (RFC 1928 TCP+UDP)、Trojan (TLS + SHA224)、VLESS (UUID 认证)、SS2022 (AEAD + BLAKE3 密钥派生)，支持首包协议自动嗅探 + TLS 透明剥离。
-        *   **伪装层**：Reality TLS 指纹伪装，X25519 密钥交换，可叠加任意内层协议。
-        *   **多路复用**：smux v1 / yamux 流控复用，兼容 Mihomo 内核客户端。
-        *   **网络栈**：Happy Eyeballs (RFC 8305) 多 IP 竞速、七级 DNS 管线 (UDP/TCP/DoT/DoH + 缓存 + 规则)、加权负载均衡 + 过载反压。
-        *   **连接池**：线程级连接复用 + 健康检查 + 自动回收。
+*   🚀 **[Prism](https://github.com/Hatedatastructures/Prism.git)** — 高性能协程代理网关
+    C++23 纯协程架构，PMR 内存池热路径零堆分配，per-worker 独占 `io_context` 无锁设计。
+    *   **协议**：HTTP / SOCKS5 / Trojan / VLESS / SS2022，首包自动嗅探 + TLS 透明剥离
+    *   **伪装与复用**：Reality TLS 指纹伪装 + smux/yamux 流控复用，兼容 Mihomo 客户端
+    *   **网络栈**：Happy Eyeballs 多 IP 竞速、七级 DNS 管线、加权负载均衡、线程级连接池
 
-*   📦 **自定义库 (手工核心)**
-    *   [Custom-libraries](https://github.com/Hatedatastructures/Custom-libraries.git) : 从零构建的高性能基础库集合，以此磨练对底层原理的极致掌控。
-        *   🛠️ **容器 (STL 风格)**: **纯手工实现**的标准容器库，接口设计对齐 STL 标准。
-            *   **序列容器**: `Vector`, `List`, `Deque`, `String`, `Queue`
-            *   **关联容器**: `RBTree` (红黑树), `AVLTree`, `HashMap` (哈希表)
-            *   **工具容器**: `PriorityQueue` (优先级队列), `Bitmap` (位图)
-        *   ⚡ **并发模块**: 线程安全的数据结构封装与并发基元。
-        *   ⚙️ **调度器**: 支持动态扩缩容的任务调度器与线程池模板。
-        *   🕸️ **网络模块**: 基于 `Boost.Asio` 封装的高效会话管理与协议处理组件。
+*   📚 **[PrismWiki](https://github.com/Hatedatastructures/PrismWiki.git)** — Prism 项目知识库
+    Obsidian 格式的完整技术文档，基于 Prism C++ 源码分析撰写，67 个文档页面。
+    *   **模块**：agent / channel / crypto / memory / multiplex / protocol / pipeline / stealth 等 16 个核心模块
+    *   **协议**：HTTP / SOCKS5 / Trojan / VLESS / Shadowsocks 2022，协议格式与实现细节
+    *   **伪装**：Reality / ShadowTLS / Restls / AnyTLS / TrustTunnel / ECH 深度分析
+    *   **周边**：mihomo 客户端对接、性能基准、调试排障、开发笔记
+    
+*   🤖 **[Nexus](https://github.com/Hatedatastructures/Nexus.git)** — 自进化 AI 代理运行时
+    Go 实现的 AI Agent 框架，支持多 LLM 后端与丰富的工具生态。
+    *   **多后端**：OpenAI / Anthropic / Gemini / AWS Bedrock，28+ 内置工具
+    *   **消息网关**：Telegram / Discord / Slack / WhatsApp / 微信 / 飞书 / 钉钉
+    *   **能力**：MCP 协议集成、子代理委派、上下文压缩、Prompt 注入防护、凭证池
 
-*   💻 **算法与练习**
-    *   [question](https://github.com/Hatedatastructures/question.git) : 数据结构与算法修炼场。
-        *   覆盖 `LeetCode` 高频题解，注重边界处理与代码鲁棒性，沉淀通用的解题范式。
+*   📦 **[Custom-libraries](https://github.com/Hatedatastructures/Custom-libraries.git)** — 高性能基础库集合 (wan)
+    C++20 头文件为主的基础组件库，重构为 `wan` 统一库，`#include "wan.hpp"` 一站式引入。
+    *   **容器**：模拟实现 STL (vector/list/map/set/queue/tree 等)，接口一致可替换
+    *   **并发**：标准容器的线程安全封装 (`concurrent_vector` 等)，读共享写独占，支持只读快照
+    *   **调度**：线程池 + 动态扩缩容 + 多策略队列 (FIFO/优先级/自适应)，任务编排与健康监控
+    *   **网络**：Boost.Asio 异步 I/O，TCP/SSL 会话管理，HTTP/HTTPS 代理转发，对称/非对称加密封装
 
-*   🧩 **其他语言练习**
-    *   [CodeLab-MultiLang](https://github.com/Hatedatastructures/CodeLab-MultiLang.git) : 多语言技术栈的试验田。
-        *   记录 `C`, `Go`, `Python` 等语言在后端场景下的特性探索与 Demo 实现，保持对不同技术栈的敏锐度。
 
 ---
 
